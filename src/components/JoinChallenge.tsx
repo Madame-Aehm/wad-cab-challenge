@@ -35,21 +35,29 @@ const JoinChallenge = () => {
 
   async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     const validationCheck = validateCreateChallenger(challengerData.current);
     if (!validationCheck.valid) {
       return setValidation(validationCheck.validation);
     }
-    const result = await createChallenger({
-      name: challengerData.current.name.trim(),
-      course: challengerData.current.course
-    });
-    if (result.error === "Meep - that alias is already being used!") {
-      return setValidation({ name: result.error, course: "" });
-    } 
-    if (result.error) {
-      return setError(result.error);
+    try {
+      const result = await createChallenger({
+        name: challengerData.current.name.trim(),
+        course: challengerData.current.course
+      });
+      if (result.error === "Meep - that alias is already being used!") {
+        return setValidation({ name: result.error, course: "" });
+      } 
+      if (result.error) {
+        return setError(result.error);
+      }
+      refreshAfterCreation();
+    } catch (error) {
+      console.log(error);
+      setError("Something went wrong... check console");
+      setLoading(false);
     }
-    refreshAfterCreation();
   }
 
   return (
@@ -71,7 +79,7 @@ const JoinChallenge = () => {
           </span>
         </div>
         { error && <p style={{ color: "red", height: "1.1rem" }}>{ error }</p> }
-        <button type='submit' disabled={loading}>Join Challenge!</button>
+        <button type='submit' disabled={loading}>{ loading ? "Loading..." : "Join Challenge!" }</button>
       </form>
     </>
   )
