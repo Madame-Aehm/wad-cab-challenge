@@ -1,15 +1,25 @@
 "use client"
-import React from 'react'
+import { deleteThisCookie } from '@/serverActions'
+import React, { useEffect } from 'react'
 
-type Props = {}
+type Props = {
+  error: Error & { digest?: string }
+  reset: () => void
+}
 
-const error = (props: Props) => {
+const Error = ({ error }: Props) => {
+
+  useEffect(() => {
+    if (error.message === "no challenger") {
+      deleteThisCookie();
+    }
+  }, [error.message])
   return (
-    <main style={{ minHeight: "100vh", display: "flex", flexDirection: "column", textAlign: "center", width: "90vw", justifyContent: "center" }}>
+    <>
       <h2>Uh oh... something went wrong 🥺</h2>
       <a href='/'><h3>Better try again...</h3></a>
-    </main>
+    </>
   )
 }
 
-export default error
+export default Error

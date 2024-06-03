@@ -25,3 +25,9 @@ export function alphabets(keyValue: number) {
     alphabetShifted: toShift + alphabet.replace(toShift, "")
   }
 }
+
+export function generateRandomKey () {
+  const min = 3;
+  const max = 8;
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
