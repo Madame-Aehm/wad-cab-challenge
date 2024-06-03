@@ -1,5 +1,6 @@
 import ChallengeSummary from "@/components/ChallengeSummary";
 import JoinChallenge from "@/components/JoinChallenge";
+import Leaderboard from "@/components/Leaderboard";
 import SlugChallenge from "@/components/SlugChallenge";
 import ChallengerModal, { ChallengerType } from "@/model";
 import { deleteThisCookie } from "@/serverActions";
@@ -9,7 +10,7 @@ import { cookies } from "next/headers";
 
 export default async function Home() {
   const challengerCookie = cookies().get("challenger");
-  console.log("this is the cookie", challengerCookie);
+  // console.log("this is the cookie", challengerCookie);
   if (challengerCookie) {
     await dbConnect();
     const challenger = await ChallengerModal.findOne({ name: challengerCookie.value }) as ChallengerType;
@@ -22,7 +23,8 @@ export default async function Home() {
       <>
         <ChallengeSummary />
         <SlugChallenge keyValue={challenger.slugChallenge.key} ciphertext={ciphertext} />
-      </>
+        <Leaderboard />
+      </> 
     )
   }
   return (

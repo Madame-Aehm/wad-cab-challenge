@@ -1,7 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 export type ChallengerType = {
+  _id: ObjectId | string
   name: string
+  course: string
   slugChallenge: {
     key: number
   }
@@ -15,6 +17,7 @@ export type ChallengerType = {
 
 const schema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
+  course: { type: String, enum: ["web", "data"], required: true },
   slugChallenge: {
     key: { type: Number, required: true }
   },
