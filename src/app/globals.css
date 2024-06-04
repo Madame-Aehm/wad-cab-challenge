@@ -176,6 +176,11 @@ button:active {
   margin-bottom: 1rem; 
 }
 
+.plaintext { 
+  padding: 1rem; 
+  border: solid 1px var(--cab-green);
+}
+
 @media only screen and (max-width: 400px) {
   .input-container {
     flex-direction: column;
