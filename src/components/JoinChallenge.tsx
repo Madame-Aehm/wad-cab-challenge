@@ -25,10 +25,12 @@ const JoinChallenge = () => {
   function handleChange (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     if (e.target.name === "name") {
       challengerData.current.name = e.target.value;
+      if (validation.name) setValidation(prev => { return { ...prev, name: "" }});
       return;
     }
     if (e.target.name === "course") {
       challengerData.current.course = e.target.value;
+      if (validation.course) setValidation(prev => { return { ...prev, course: "" }});
       return;
     }
   }
@@ -36,27 +38,29 @@ const JoinChallenge = () => {
   async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
-    setLoading(true);
     const validationCheck = validateCreateChallenger(challengerData.current);
     if (!validationCheck.valid) {
-      return setValidation(validationCheck.validation);
-    }
-    try {
-      const result = await createChallenger({
-        name: challengerData.current.name.trim(),
-        course: challengerData.current.course
-      });
-      if (result.error === "Meep - that alias is already being used!") {
-        return setValidation({ name: result.error, course: "" });
-      } 
-      if (result.error) {
-        return setError(result.error);
+      setValidation(validationCheck.validation);
+    } else {
+      setLoading(true);
+      try {
+        const result = await createChallenger({
+          name: challengerData.current.name.trim(),
+          course: challengerData.current.course
+        });
+        if (result.error === "Meep - that alias is already being used!") {
+          setValidation({ name: result.error, course: "" });
+        } 
+        else if (result.error) {
+          return setError(result.error);
+        } 
+        else refreshAfterCreation();
+      } catch (error) {
+        console.log(error);
+        setError("Something went wrong... check console");
+      } finally {
+        setLoading(false);
       }
-      refreshAfterCreation();
-    } catch (error) {
-      console.log(error);
-      setError("Something went wrong... check console");
-      setLoading(false);
     }
   }
 

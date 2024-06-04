@@ -99,18 +99,18 @@ body {
   html {
     color-scheme: dark;
   }
+  table, td {
+    border: solid 1px whitesmoke;
+    border-collapse: collapse;
+  } 
 }
 
 h1, h2, h3, h4, p {
   margin-bottom: 1rem;
 }
 
-h1, h2, a {
+h1, h2, h3, h4, a {
   color: var(--cab-green);
-}
-
-h3, h4 {
-  color: darkslategrey;
 }
 
 table, td {

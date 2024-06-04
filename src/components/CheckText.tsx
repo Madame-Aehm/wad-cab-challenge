@@ -1,10 +1,12 @@
 "use client"
 import { checkText } from '@/serverActions'
 import React, { useRef, useState } from 'react'
+import ConfettiWrapper from './Confetti';
 
 const CheckText = () => {
   const inputValue = useRef("");
   const [validation, setValidation] = useState("");
+  const [complete, setComplete] = useState(false);
   function handleChange (e: React.ChangeEvent<HTMLTextAreaElement>) {
     setValidation("");
     inputValue.current = e.target.value;
@@ -15,16 +17,21 @@ const CheckText = () => {
     }
     try {
       const result = await checkText(inputValue.current);
+      console.log(result);
       if (result?.error) {
         setValidation(result.error);
-      }
-      console.log(result);
+      } else setComplete(true);
     } catch (error) {
       console.log(error);
       setValidation("Something went wrong.... :/")
     }
   }
-  return (
+  return complete ? (
+    <>
+      <ConfettiWrapper />
+      <h2>You did it!! Congrats 🥳</h2>
+    </>
+  ) : (
     <>
       <textarea 
         className={ validation ? "validationError" : ""}
@@ -34,7 +41,7 @@ const CheckText = () => {
         style={{ width: "80%", maxWidth: "600px", alignSelf: "center" }} 
       />
       <button style={{ width: "80%", maxWidth: "600px", alignSelf: "center" }} onClick={handleClick}>Check Text</button>
-      <small style={{ marginTop: "1rem", color: "red" }}>{ validation }</small>
+      <small style={{ margin: "1rem 0", color: "red" }}>{ validation }</small>
     </>
   )
 }

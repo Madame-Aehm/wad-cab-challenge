@@ -14,7 +14,7 @@ async function Leaderboard() {
     <>
       <hr style={{ margin: "3rem 0"}}></hr>
       <h2>Leaderboard</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", border: "solid 2px grey" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", border: "solid 2px grey", wordBreak: "break-word"  }}>
         <div style={{ borderRight: "solid 2px grey", display: "grid", alignContent: "start" }}>
           <LeaderBoardColumn course='Web' leaders={webLeaders} />
         </div>
