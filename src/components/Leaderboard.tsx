@@ -39,7 +39,7 @@ function LeaderBoardColumn({ course, leaders }: LBCProps) {
       <h3 style={{ padding: "1rem 0", borderBottom: "solid 2px grey" }}>{ course }</h3>
       { leaders.length === 0 && <p>No Winner Yet...</p> }
       { leaders.map((challenger, i) => {
-        return i === 0 ? <h3 key={"webWinner"}>1. { challenger }</h3> : <p>{ i + 1 }. { challenger }</p>
+        return i === 0 ? <h3 key={`winner ${course}`}>1. { challenger }</h3> : <p key={`runnerup ${i + 1} ${course}`}>{ i + 1 }. { challenger }</p>
       }) }
     </>
   )
