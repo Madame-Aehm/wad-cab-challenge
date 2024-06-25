@@ -17,7 +17,6 @@ const CheckText = () => {
     }
     try {
       const result = await checkText(inputValue.current);
-      console.log(result);
       if (result?.error) {
         setValidation(result.error);
       } else setComplete(true);

@@ -1,6 +1,7 @@
 import CheckText from '@/components/CheckText';
 import PlaintextSample from '@/components/PlaintextSample';
 import ChallengerModal, { ChallengerType } from '@/model';
+import { deleteThisCookie } from '@/serverActions';
 import dbConnect from '@/utils/dbConnect';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';

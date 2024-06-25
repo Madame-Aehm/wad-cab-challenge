@@ -7,6 +7,7 @@ import dbConnect from "./utils/dbConnect";
 import { encrypt, generateRandomKey } from "./utils/encryptionFunctions";
 import { revalidatePath } from "next/cache";
 import { getRandomQuote } from "./utils/randomQuote";
+import { redirect } from "next/navigation";
 
 export async function createChallenger(data: ChallengerDataType) {
   try {
@@ -45,6 +46,7 @@ export async function refreshAfterCreation() {
 
 export async function deleteThisCookie() {
   cookies().delete("challenger");
+  redirect("/");
 }
 
 export async function checkText(testText: string) {
