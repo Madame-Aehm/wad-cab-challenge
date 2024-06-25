@@ -9,6 +9,8 @@ type Props = {
 
 const Error = ({ error }: Props) => {
 
+  console.log("ERROR ERROR ERROR", error, error.digest);
+
   useEffect(() => {
     if (error.message === "no challenger") {
       deleteThisCookie();
