@@ -1,4 +1,5 @@
 import CheckText from '@/components/CheckText';
+import PlaintextSample from '@/components/PlaintextSample';
 import ChallengerModal, { ChallengerType } from '@/model';
 import dbConnect from '@/utils/dbConnect';
 import { cookies } from 'next/headers';
@@ -20,13 +21,14 @@ const Thisistheslug = async(props: Props) => {
     return (
       <>
         <h1>You found it!</h1>
-        <p>Looks like there&apos;s another text that needs to be decrypted using your decryption algorithm! But oh no! Your key has changed!</p>
+        <p>It looks like there&apos;s another text that needs to be decrypted using your decryption algorithm! But oh no! It&apos;s more complicated! This time 
+          you&apos;ll have to consider capitalized letters and punctuation! And to make matters worse, your key has changed 😵‍💫</p>
         <p>Your new key is <b>{ challenger.pageChallenge.key }</b>, and your text-to-be-deciphered is:</p>
-        <p className='plaintext'>{ challenger.pageChallenge.cipherText }</p>
-        <p>
-          You can assume there will be no characters except for lower-case letters and spaces. In order to qualify for the ticket, 
-          you must show your code and explain your logic.
+        <PlaintextSample cipherText={challenger.pageChallenge.cipherText} />
+        <p>Once you&apos;ve deciphered your text, you might notice it&apos;s familiar.. If not, you&apos;ll have to utilize your best detective skills to determine
+          the name of the movie the text comes from 🔎
         </p>
+        <p>*In order to qualify for the ticket, you must show your code and explain your logic.</p>
         { challenger.pageChallenge.solved ? <h2>Challenge Complete!</h2> : <CheckText /> }
         <a href='/'>Back to Main ...</a>
       </>

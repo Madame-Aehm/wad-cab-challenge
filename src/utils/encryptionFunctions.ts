@@ -1,4 +1,4 @@
-export function encrypt(plaintextValue: string, keyValue: number) {
+export function encrypt1(plaintextValue: string, keyValue: number) {
   const plaintext = plaintextValue.toLowerCase();
   let ciphertext = "";
   const { alphabet, alphabetShifted } = alphabets(keyValue);
@@ -15,6 +15,27 @@ export function encrypt(plaintextValue: string, keyValue: number) {
     }
   }
   return ciphertext;
+}
+
+export function encrypt(plaintextValue: string, keyValue: number) {
+  const { alphabet, alphabetShifted } = alphabets(keyValue);
+  return plaintextValue.split("").map((char) => {
+    if (alphabet.includes(char.toLowerCase())) {
+      const alphIndex = getAlphIndex(char);
+      return char.toUpperCase() === char ? alphabetShifted[alphIndex].toUpperCase() : alphabetShifted[alphIndex]; 
+    }
+    return char;
+  }).join("")
+}
+
+function getAlphIndex (char: string) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  for (let i = 0; i < alphabet.length; i++) {
+    if (char.toLowerCase() === alphabet[i]) {
+      return i
+    }
+  }
+  return -1;
 }
 
 export function alphabets(keyValue: number) {

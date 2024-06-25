@@ -7,7 +7,7 @@ const CheckText = () => {
   const inputValue = useRef("");
   const [validation, setValidation] = useState("");
   const [complete, setComplete] = useState(false);
-  function handleChange (e: React.ChangeEvent<HTMLTextAreaElement>) {
+  function handleChange (e: React.ChangeEvent<HTMLInputElement>) {
     setValidation("");
     inputValue.current = e.target.value;
   }
@@ -33,11 +33,11 @@ const CheckText = () => {
     </>
   ) : (
     <>
-      <textarea 
+      <input 
         className={ validation ? "validationError" : ""}
         onChange={handleChange}
         spellCheck={false}
-        placeholder="Once you've deciphered your text, paste it here to test if it's correct!" 
+        placeholder="Once you've deciphered your text, enter the name of the film here!" 
         style={{ width: "80%", maxWidth: "600px", alignSelf: "center" }} 
       />
       <button style={{ width: "80%", maxWidth: "600px", alignSelf: "center" }} onClick={handleClick}>Check Text</button>

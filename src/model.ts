@@ -23,7 +23,7 @@ const schema = new mongoose.Schema({
   },
   pageChallenge: { 
     key: { type: Number, required: true },
-    plainText: { type: String, required: true },
+    plainTextCompare: [String],
     cipherText: { type: String, required: true },
     solved: String
   }
