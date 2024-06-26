@@ -13,7 +13,7 @@ const Error = ({ error }: Props) => {
     if (error.digest) {
       deleteThisCookie();
     }
-  }, [])
+  }, [error.digest])
   return (
     <>
       <h2>Uh oh... something went wrong 🥺</h2>

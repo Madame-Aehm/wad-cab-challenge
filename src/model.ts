@@ -9,9 +9,10 @@ export type ChallengerType = {
   }
   pageChallenge: {
     key: number
-    plainText: string
+    plainTextCompare: string[]
     cipherText: string
     solved?: string
+    acceptedAnswer?: string
   }
 }
 
@@ -25,7 +26,8 @@ const schema = new mongoose.Schema({
     key: { type: Number, required: true },
     plainTextCompare: [String],
     cipherText: { type: String, required: true },
-    solved: String
+    solved: String,
+    acceptedAnswer: String
   }
 });
 

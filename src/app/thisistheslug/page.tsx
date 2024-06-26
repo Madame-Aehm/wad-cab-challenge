@@ -30,7 +30,12 @@ const Thisistheslug = async(props: Props) => {
           the name of the movie the text comes from 🔎
         </p>
         <p>*In order to qualify for the ticket, you must show your code and explain your logic.</p>
-        { challenger.pageChallenge.solved ? <h2>Challenge Complete!</h2> : <CheckText /> }
+        { challenger.pageChallenge.solved ? 
+          <>
+            <h2>Challenge Complete!</h2>
+            { challenger.pageChallenge.acceptedAnswer && <p>You submitted: { challenger.pageChallenge.acceptedAnswer }</p>}
+          </> 
+          : <CheckText /> }
         <a href='/'>Back to Main ...</a>
       </>
     )

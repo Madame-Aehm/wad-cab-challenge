@@ -64,6 +64,7 @@ export async function checkText(testText: string) {
     for (let i = 0; i < challenger.pageChallenge.plainTextCompare.length; i++) {
       if (testText.toLowerCase().includes(challenger.pageChallenge.plainTextCompare[i])) {
         challenger.pageChallenge.solved = Date();
+        challenger.pageChallenge.acceptedAnswer = testText;
         await challenger.save();
         return { error: null }
       }
