@@ -13,7 +13,7 @@ async function Leaderboard() {
   return (
     <>
       <hr style={{ margin: "3rem 0"}}></hr>
-      <h2>Leaderboard</h2>
+      <h2 className='cabGreen'>Leaderboard</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", border: "solid 2px grey", wordBreak: "break-word"  }}>
         <div style={{ borderRight: "solid 2px grey", display: "grid", alignContent: "start" }}>
           <LeaderBoardColumn course='Web' leaders={webLeaders} />
@@ -36,10 +36,12 @@ type LBCProps = {
 function LeaderBoardColumn({ course, leaders }: LBCProps) {
   return (
     <>
-      <h3 style={{ padding: "1rem 0", borderBottom: "solid 2px grey" }}>{ course }</h3>
+      <h3 style={{ padding: "1rem 0", borderBottom: "solid 2px grey" }} className='cabGreen'>{ course }</h3>
       { leaders.length === 0 && <p>No Winner Yet...</p> }
       { leaders.map((challenger, i) => {
-        return i === 0 ? <h3 key={`winner ${course}`}>1. { challenger }</h3> : <p key={`runnerup ${i + 1} ${course}`}>{ i + 1 }. { challenger }</p>
+        return i === 0 ? 
+          <h3 key={`winner ${course}`}><span className='cabGreen'>1. </span>{ challenger }</h3> : 
+          <p key={`runnerup ${i + 1} ${course}`}>{ i + 1 }. { challenger }</p>
       }) }
     </>
   )

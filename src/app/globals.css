@@ -109,7 +109,11 @@ h1, h2, h3, h4, p {
   margin-bottom: 1rem;
 }
 
-h1, h2, h3, h4, a {
+h1, a {
+  color: var(--cab-green);
+}
+
+.cabGreen {
   color: var(--cab-green);
 }
 

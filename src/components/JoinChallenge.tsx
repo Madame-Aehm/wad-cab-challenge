@@ -49,18 +49,19 @@ const JoinChallenge = () => {
           course: challengerData.current.course
         });
         if (result.error === "Meep - that alias is already being used!") {
+          setLoading(false);
           setValidation({ name: result.error, course: "" });
         } 
         else if (result.error) {
-          return setError(result.error);
+          setLoading(false);
+          setError(result.error);
         } 
         else refreshAfterCreation();
       } catch (error) {
         console.log(error);
-        setError("Something went wrong... check console");
-      } finally {
         setLoading(false);
-      }
+        setError("Something went wrong... check console");
+      } 
     }
   }
 
