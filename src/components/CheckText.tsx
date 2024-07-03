@@ -36,7 +36,7 @@ const CheckText = () => {
         className={ validation ? "validationError" : ""}
         onChange={handleChange}
         spellCheck={false}
-        placeholder="Once you've deciphered your text, enter the name of the film here!" 
+        placeholder="Enter the name of the film your text is from here!" 
         style={{ width: "80%", maxWidth: "600px", alignSelf: "center" }} 
       />
       <button style={{ width: "80%", maxWidth: "600px", alignSelf: "center" }} onClick={handleClick}>Check Text</button>

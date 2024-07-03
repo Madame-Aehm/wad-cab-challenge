@@ -20,6 +20,7 @@ const SlugChallenge = ({ keyValue, ciphertext }: Props) => {
       <CipherTable keyValue={keyValue} />
       <p>The URL slug you&apos;re trying to decrypt is: <b>{ciphertext}</b></p>
       <p>Once you&apos;ve got your decrypted slug, paste it up top in the URL (https://wad-cab-challenge.vercel.app/<b>{ciphertext}</b>) to go to the next step!</p>
+      <p><b>Note:</b> In order to qualify for the ticket, you must show your code and explain your logic.</p>
     </>
   )
 }

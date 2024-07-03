@@ -29,7 +29,6 @@ const Thisistheslug = async(props: Props) => {
         <p>Once you&apos;ve deciphered your text, you might notice it&apos;s familiar.. If not, you&apos;ll have to utilize your best detective skills to determine
           the name of the movie the text comes from 🔎
         </p>
-        <p>*In order to qualify for the ticket, you must show your code and explain your logic.</p>
         { challenger.pageChallenge.solved ? 
           <>
             <h2>Challenge Complete!</h2>
