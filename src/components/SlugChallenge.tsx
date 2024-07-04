@@ -22,7 +22,8 @@ const SlugChallenge = ({ keyValue, ciphertext }: Props) => {
       <p>Once you&apos;ve got your decrypted slug, paste it up top in the URL (https://wad-cab-challenge.vercel.app/<b>{ciphertext}</b>) to go to the next step!</p>
       <p>
         <b>Note:</b> In order to qualify for the ticket, you must show your code and explain your logic. Web Dev students should write their solution using JavaScript
-        or TypeScript. Data students should write their solution using Python.
+        or TypeScript. Data students should write their solution using Python. If, for any reason, you do not or can not claim the ticket, it will instead go to the
+        next runner-up.
       </p>
     </>
   )
