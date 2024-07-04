@@ -1,17 +1,13 @@
 import CheckText from '@/components/CheckText';
 import PlaintextSample from '@/components/PlaintextSample';
 import ChallengerModal, { ChallengerType } from '@/model';
-import { deleteThisCookie } from '@/serverActions';
 import dbConnect from '@/utils/dbConnect';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
-type Props = {}
-
-const Thisistheslug = async(props: Props) => {
+const Thisistheslug = async() => {
   const challengerCookie = cookies().get("challenger");
-  // console.log("this is the cookie", challengerCookie);
   if (challengerCookie) {
     await dbConnect();
     const challenger = await ChallengerModal.findOne({ name: challengerCookie.value }) as ChallengerType;

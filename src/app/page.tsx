@@ -15,7 +15,7 @@ export default async function Home() {
     if (!challenger) {
       throw Error("no challenger");
     }
-    const ciphertext = encrypt("thisistheslug", challenger.slugChallenge.key);
+    const ciphertext = encrypt("supercalifragilisticexpialidocious", challenger.slugChallenge.key);
     return (
       <>
         <ChallengeSummary />
