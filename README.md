@@ -18,6 +18,8 @@ Once the students have signed up, they will be able to read about the challenge.
 
 Once the student has successfully decrypted the slug, they can visit this page. The challenge is mostly the same, but I have increased the length and complexity of the string to be decrypted to encourage them to adapt their existing function. If they are able to decrypt the string, if the lines are not already familiar, a quick Google search should find the movie title they need to give to the input.
 
+![screenshot of the next step](./readme_assets/Screenshot4_500px.png)
+
 # Leaderboard
 
 Once students start completing the challenge, their alias will appear in the leaderboard on the landing page. 
