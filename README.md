@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WAD CAB Coding Challenge
 
-## Getting Started
+The purpose of this small project is to provide a simple coding challenge to the students of [Code Academy Berlin](https://www.codeacademyberlin.com/). The school had two tickets for the 2024 [We Are Developers](https://www.wearedevelopers.com/) World Congress conference in Berlin to give away. We wanted a simple coding challenge that our students from both Data Science and Web Development disciplines could complete, the fastest from each course would win a ticket. 
 
-First, run the development server:
+The project uses the full-stack framework [Next.js](https://nextjs.org/), together with NoSQL database [MongoDB](https://www.mongodb.com/). I chose against implementing any authentication, simply storing the student alias in a cookie to persist their session, as this was intended to be a small challenge that could be completed in no more than a few hours.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Landing page before signing up
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![screenshot of the landing page with the form to sign up](./readme_assets/screenshot1_500px.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Landing page after signing up
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Once the students have signed up, they will be able to read about the challenge. They must first use a Caeser Cipher to decrypt the slug where they will find instructions for the next step. The only problem we really had with this view, is that quite a few people misinterpreted the table - the task is to _decrypt_ the slug, not _encrypt_ the slug, meaning you need compare the bottom row to the top, not the other way around. 
 
-## Learn More
+![screenshot of the landing page with the coding challenge description](./readme_assets/Screenshot2_500px.png)
 
-To learn more about Next.js, take a look at the following resources:
+# Second step page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Once the student has successfully decrypted the slug, they can visit this page. The challenge is mostly the same, but I have increased the length and complexity of the string to be decrypted to encourage them to adapt their existing function. If they are able to decrypt the string, if the lines are not already familiar, a quick Google search should find the movie title they need to give to the input.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Leaderboard
 
-## Deploy on Vercel
+Once students start completing the challenge, their alias will appear in the leaderboard on the landing page. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![screenshot of the leaderboard table](./readme_assets/Screenshot3_500px.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
