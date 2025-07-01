@@ -12,19 +12,19 @@ const CipherTable = ({ keyValue }: Props) => {
       <table>
         <tbody>
           <tr>
-            { alphabet.split("").map((letter) => {
+            { alphabetShifted.split("").map((letter) => {
               return (
-                <td key={letter}>
-                  <div>{ letter }</div>
+                <td key={letter + "+"}>
+                  <div>{letter}</div>
                 </td>
               )
             }) }
           </tr>
           <tr>
-            { alphabetShifted.split("").map((letter) => {
+            { alphabet.split("").map((letter) => {
               return (
-                <td key={letter + "+"}>
-                  <div>{ letter }</div>
+                <td key={letter}>
+                  <div>{letter}</div>
                 </td>
               )
             }) }
