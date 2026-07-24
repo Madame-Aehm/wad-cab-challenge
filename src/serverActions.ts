@@ -11,15 +11,11 @@ import { redirect } from "next/navigation";
 
 export async function createChallenger(data: ChallengerDataType) {
   try {
-    console.log("not yet connected");
     await dbConnect();
-    console.log("connected to db");
     const existingChallenger = await ChallengerModal.findOne({ name: data.name });
     if (existingChallenger) {
-      console.log("challenger alias exists");
       return { error: "Meep - that alias is already being used!" }
     }
-    console.log("challenger alias free");
     const plainText = getRandomQuote();
     const key1 = generateRandomKey();
     let key2;
@@ -36,7 +32,6 @@ export async function createChallenger(data: ChallengerDataType) {
         cipherText: encrypt(plainText.quote, key2)
       }
     });
-    console.log("challenger created")
     cookies().set("challenger", data.name);
     return { error: null };
   } catch (error) {
