@@ -3,11 +3,12 @@ import PlaintextSample from '@/components/PlaintextSample';
 import ChallengerModal, { ChallengerType } from '@/model';
 import dbConnect from '@/utils/dbConnect';
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import React from 'react'
 
 const Thisistheslug = async() => {
-  const challengerCookie = cookies().get("challenger");
+  const cookieStore = await cookies();
+  const challengerCookie = cookieStore.get("challenger");
   if (challengerCookie) {
     await dbConnect();
     const challenger = await ChallengerModal.findOne({ name: challengerCookie.value }) as ChallengerType;
@@ -31,7 +32,7 @@ const Thisistheslug = async() => {
             { challenger.pageChallenge.acceptedAnswer && <p>You submitted: { challenger.pageChallenge.acceptedAnswer }</p>}
           </> 
           : <CheckText /> }
-        <a href='/'>Back to Main ...</a>
+        <Link href='/'>Back to Main ...</Link>
       </>
     )
   } else return redirect("/");
