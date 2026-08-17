@@ -1,7 +1,7 @@
 "use client"
 import { createChallenger, refreshAfterCreation } from '@/serverActions'
 import { validateCreateChallenger } from '@/utils/validation'
-import { revalidatePath } from 'next/cache'
+// import { revalidatePath } from 'next/cache'
 import React, { useRef, useState } from 'react'
 
 export type ChallengerDataType = {

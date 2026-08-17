@@ -8,7 +8,8 @@ import { encrypt } from "@/utils/encryptionFunctions";
 import { cookies } from "next/headers";
 
 export default async function Home() {
-  const challengerCookie = cookies().get("challenger");
+  const cookieStore = await cookies();
+  const challengerCookie = cookieStore.get("challenger");
   if (challengerCookie) {
     await dbConnect();
     const challenger = await ChallengerModal.findOne({ name: challengerCookie.value }) as ChallengerType;

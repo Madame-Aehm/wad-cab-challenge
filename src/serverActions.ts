@@ -8,6 +8,7 @@ import { encrypt, generateRandomKey } from "./utils/encryptionFunctions";
 import { revalidatePath } from "next/cache";
 import { getRandomQuote } from "./utils/randomQuote";
 import { redirect } from "next/navigation";
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 export async function createChallenger(data: ChallengerDataType) {
   try {
@@ -32,7 +33,8 @@ export async function createChallenger(data: ChallengerDataType) {
         cipherText: encrypt(plainText.quote, key2)
       }
     });
-    cookies().set("challenger", data.name);
+    const cookieStore = await cookies();
+    cookieStore.set("challenger", data.name);
     return { error: null };
   } catch (error) {
     console.log(error);
@@ -44,21 +46,23 @@ export async function refreshAfterCreation() {
   revalidatePath("/");
 }
 
-export async function deleteThisCookie() {
-  cookies().delete("challenger");
+export async function deleteThisCookie(cookieStore?: ReadonlyRequestCookies) {
+  if (!cookieStore) cookieStore = await cookies();
+  cookieStore.delete("challenger");
   redirect("/");
 }
 
 export async function checkText(testText: string) {
   try {
-    const cookie = cookies().get("challenger");
+    const cookieStore = await cookies();
+    const cookie = cookieStore.get("challenger");
     if (!cookie) {
       return { error: "You shouldn't be here.." };
     }
     await dbConnect();
     const challenger = await ChallengerModal.findOne({ name: cookie.value });
     if (!challenger) {
-      deleteThisCookie();
+      deleteThisCookie(cookieStore);
       return { error: "no challenger" }
     }
     for (let i = 0; i < challenger.pageChallenge.plainTextCompare.length; i++) {

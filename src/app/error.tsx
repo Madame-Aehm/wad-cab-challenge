@@ -1,6 +1,6 @@
 "use client"
 import { deleteThisCookie } from '@/serverActions'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 type Props = {
   error: Error & { digest?: string }
